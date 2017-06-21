@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProductInventory extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class ProductInventory extends Migration
      */
     public function up()
     {
-        Schema::create('inventory', function (Blueprint $table) {
-            $table->string('model')->unique();
-            $table->string('units');
-            $table->foreign('model')->references('model')->on('products');
+        Schema::create('products', function (Blueprint $table) {
+            $table->string('model');
+            $table->string('pname');
+            $table->timestamps();
             $table->primary('model');
         });
     }
@@ -27,6 +27,6 @@ class ProductInventory extends Migration
      */
     public function down()
     {
-        Schema::drop('inventory');
+        Schema::drop('products');
     }
 }

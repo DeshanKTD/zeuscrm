@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProductDesc extends Migration
+class CreateProductInventoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class ProductDesc extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_inventories', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('model');
-            $table->string('pname');
-            $table->timestamps();
-            $table->primary('model');
+            $table->string('units');
+            $table->foreign('model')->references('model')->on('products');        
         });
     }
 
@@ -27,6 +27,6 @@ class ProductDesc extends Migration
      */
     public function down()
     {
-        Schema::drop('products');
+        Schema::drop('product_inventories');
     }
 }
