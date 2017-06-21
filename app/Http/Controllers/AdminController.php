@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use DB;
+
 class AdminController extends Controller
 {
     //
@@ -15,12 +17,24 @@ class AdminController extends Controller
 
     //add user
     public function addUser(Request $request){
+    	DB::table('users')->insert(
+    		[
+    			'fname' => $request->fname,
+    			'lname' => $request->lname,
+    			'email' => $request->email,
+    			'password' => $request->password,
+    			'address' => $request->address,
+    			'telephone' => $request->telephone,
+    			'company' => $request->company,
+    			'role' => $request->role
 
+    		]
+		);
     }
 
     //remove user
     public function removeUser(Request $request){
-
+    	DB::table('users')->where('email', '=', $request->email)->delete();
     }
 
 
@@ -32,6 +46,6 @@ class AdminController extends Controller
 
     //view users
     public function viewUsers(Request $request){
-    	
+
     }
 }
