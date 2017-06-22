@@ -18,3 +18,43 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::post('log','LoginController@authenticate');
+
+///============= Admin =================================
+
+//admin page routes
+Route::get('/adminhome','AdminController@viewUsers');
+
+Route::get('/adduserview', 'AdminController@addUserView');
+
+//admin functions
+Route::post('/adduser','AdminController@addUser');
+
+
+
+
+///============= Customer/client ==========================
+
+//client page routes
+Route::get('/clienthome','CustomerController@viewCurrentOrders');
+
+Route::get('/addorder','CustomerController@addOrderView');
+
+
+//client functions
+
+
+
+
+///============== Company User ==============================
+
+//company page routes
+Route::get('/products','CompanyController@viewProductList');
+
+Route::get('/clientorder','CompanyController@viewCustomerOrder');
+
+Route::get('/companyorder','CompanyController@viewCompanyOrderList');
+
+Route::get('/clients','CompanyController@viewClients');

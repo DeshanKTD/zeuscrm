@@ -11,6 +11,7 @@ class CustomerController extends Controller
     //
     public function __construct(){
       $this->middleware('auth');
+      //$this->middleware('rolecheckclient');
     }
 
     //make a order
@@ -44,6 +45,19 @@ class CustomerController extends Controller
 
    }
 
+
+  //view customer home page
+   public function viewCurrentOrders(Request $request){
+      return view('client_view');
+   }
+
+  //view customer add order page
+   public function addOrderView(Request $request){
+      return view('client_order');
+   }
+
+
+   //
 
 
 }

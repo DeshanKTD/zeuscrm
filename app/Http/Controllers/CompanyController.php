@@ -11,11 +11,12 @@ class CompanyController extends Controller
     //
     public function __construct(){
       $this->middleware('auth');
+      // $this->middleware('rolecheckauser');
     }
 
     //view product list
     public function viewProductList(Request $request){
-
+        return view('company_inventory');
     }
 
     //add a new product to inventory
@@ -50,7 +51,7 @@ class CompanyController extends Controller
 
     //view customer order
     public function viewCustomerOrder(Request $request){
-
+        return view('company_view');
     }
 
     //view custmer oderlist
@@ -65,7 +66,13 @@ class CompanyController extends Controller
 
     //view company oderlist
     public function viewCompanyOrderList(Request $request){
-    	
+        return view('company_orders');
     }
+
+    //view clients
+    public function viewClients(Request $request){
+        return view('company_clients');
+    }
+
 
 }

@@ -45,6 +45,9 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'rolecheckadmin'=> \App\Http\Middleware\AdminRoleChecker::class,
+        'rolecheckauser'=> \App\Http\Middleware\UserRoleChecker::class,
+        'rolecheckclient'=> \App\Http\Middleware\ClientRoleChecker::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
