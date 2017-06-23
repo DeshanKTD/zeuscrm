@@ -15,7 +15,7 @@ class CreateProductInventoriesTable extends Migration
         Schema::create('product_inventories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model');
-            $table->string('units');
+            $table->integer('units');
             $table->foreign('model')->references('model')->on('products');        
         });
     }

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Input;
+
 use DB;
 
 class AdminController extends Controller
@@ -33,13 +35,19 @@ class AdminController extends Controller
 
     		]
 		);
-        return view('admin_view');
+        $cusers =  DB::table('users')->select('fname','lname', 'email','company','role')->get();
+        return view('admin_view')->with('cusers',$cusers);
 
     }
 
     //remove user
     public function removeUser(Request $request){
-    	DB::table('users')->where('email', '=', $request->email)->delete();
+        $data = Input::all();;
+        $email= $data['email'];
+    	DB::table('users')->where('email', '=', $email)->delete();
+
+        $cusers =  DB::table('users')->select('fname','lname', 'email','company','role')->get();
+        return view('admin_view')->with('cusers',$cusers);
     }
 
 
@@ -65,7 +73,8 @@ class AdminController extends Controller
 
     //view users
     public function viewUsers(Request $request){
-            return view('admin_view');
+            $cusers =  DB::table('users')->select('fname','lname', 'email','company','role')->get();
+            return view('admin_view')->with('cusers',$cusers);
     }
 
     //view adduser

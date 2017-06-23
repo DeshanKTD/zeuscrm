@@ -20,6 +20,7 @@ class CreateCustomerOrdersTable extends Migration
             $table->string('amount');
             $table->timestamps('created');
             $table->date('reqdate');
+            $table->binary('confirmed');
             $table->foreign('email')->references('email')->on('users');
             $table->foreign('model')->references('model')->on('products');
         });

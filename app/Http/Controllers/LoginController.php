@@ -17,15 +17,15 @@ class LoginController extends Controller
             // Authentication passed...
             $role = Auth::user()->role;
             if($role==='admin'){
-            	return view('admin_view');
+            	return redirect('/adminhome');
             }
             
             else if($role==='client'){
-            	return view('client_view');
+            	return redirect('/clienthome');
             }
 
             else if($role==='user'){
-            	return view('company_view');
+            	return redirect('/clientorder');
             }
             return view('welcome');
         }

@@ -32,6 +32,8 @@ Route::get('/adduserview', 'AdminController@addUserView');
 //admin functions
 Route::post('/adduser','AdminController@addUser');
 
+Route::post('/removeuser','AdminController@removeUser');
+
 
 
 
@@ -58,3 +60,13 @@ Route::get('/clientorder','CompanyController@viewCustomerOrder');
 Route::get('/companyorder','CompanyController@viewCompanyOrderList');
 
 Route::get('/clients','CompanyController@viewClients');
+
+//company functions
+
+Route::post('/addproduct','CompanyController@createProduct');
+
+Route::post('/addclient','CompanyController@addClient');
+
+Route::post('/makecompanyorder','CompanyController@createCompanyOrder');
+
+Route::post('/cea','CompanyController@');

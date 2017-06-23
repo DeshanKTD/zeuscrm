@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->string('company');
-            $table->string('role');
+            $table->enum('role',['admin','client','user']);
             $table->rememberToken();
             $table->timestamps();
         });
