@@ -11,6 +11,7 @@ class CustomerOrders extends Model
      *
      * @var array
      */
+    public $primaryKey = 'oderno';
     protected $fillable = [
         'orderno', 'email', 'model', 'amount', 'reqdate',
     ];

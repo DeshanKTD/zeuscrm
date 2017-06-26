@@ -13,9 +13,10 @@ class CreateProductInventoriesTable extends Migration
     public function up()
     {
         Schema::create('product_inventories', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('model');
             $table->integer('units');
+            $table->date('updated_at');
+            $table->primary('model');
             $table->foreign('model')->references('model')->on('products');        
         });
     }

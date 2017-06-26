@@ -12,6 +12,9 @@ use Auth;
 
 use DB;
 
+use App\ProductInventory;
+
+use App\CompanyOrders;
 class CompanyController extends Controller
 {
     //
@@ -81,16 +84,18 @@ class CompanyController extends Controller
 
     //view customer order
     public function viewCustomerOrder(Request $request){
-        $corders = DB::table('customer_orders')
-            ->join('users', 'customer_orders.email', '=', 'users.email')
-            ->select('customer_orders.oderno', 'users.fname', 'users.lname', 'users.company','customer_orders.reqdate')
+        $cuorder = DB::table('customer_orders')
+            ->join('users','customer_orders.email','=','users.email')
+            ->join('products','customer_orders.model','=','products.model')
+            ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
             ->get();
 
-        return view('company_view')->with('corders',$corders);
+        return view('company_view')->with('cuorder',$cuorder);
     }
 
     //view custmer oderlist
     public function viewCustomerOrderList(Request $request){
+
 
     }
 
@@ -104,7 +109,7 @@ class CompanyController extends Controller
                 'updated_at' => date('Y-m-d H:i:s'),
                 'reqdate' => $request->reqdate,
                 'amount' => $request->amount,
-                'confirmed' -> $request->confirmed
+                'confirmed' => $request->confirmed
             ]);
         $order = DB::table('company_orders')
                 ->join('users','company_orders.email','=','users.email')
@@ -116,7 +121,27 @@ class CompanyController extends Controller
         return view('company_orders')->with('order',$order)->with('product',$product);
         
 
-    } 
+    }
+
+    //arrived company order
+    public function arrivedOrder(Request $request){
+        DB::table('company_orders')->where('oderno',$request->oderno)->update(['confirmed'=>1]);
+        $order = CompanyOrders::find($request->oderno);
+
+        $model = ProductInventory::find($order->model);
+        $model->units+=$order->amount;
+        $model->save();
+
+
+        $order = DB::table('company_orders')
+            ->join('users','company_orders.email','=','users.email')
+            ->join('products','company_orders.model','=','products.model')
+            ->select('company_orders.oderno','users.fname','users.lname','company_orders.reqdate','company_orders.created_at','company_orders.amount','products.model','products.pname','company_orders.confirmed')
+            ->get();
+        $product = DB::table('products')->select('model','pname')->get();
+
+        return view('company_orders')->with('order',$order)->with('product',$product);
+    }
 
     //view company order
     public function viewCompanyOrder(Request $request){
@@ -162,6 +187,7 @@ class CompanyController extends Controller
         $cusers =  DB::table('users')->select('fname','lname', 'email','company','telephone')->where('role', '=', 'client')->get();
         return view('company_clients')->with('cusers',$cusers);
     }
+
 
 
 

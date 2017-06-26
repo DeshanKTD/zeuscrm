@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use DB;
+
+use Auth;
+
 class CustomerController extends Controller
 {
     //
@@ -16,17 +20,19 @@ class CustomerController extends Controller
 
     //make a order
     public function createOrder(Request $request){
-      $uri = $request->path();
-      echo '<br>URI: '.$uri;
-      
-      $url = $request->url();
-      echo '<br>';
-      
-      echo 'URL: '.$url;
-      $method = $request->method();
-      echo '<br>';
-      
-      echo 'Method: '.$method;
+        DB::table('customer_orders')->insert([
+            'oderno' => $request->oderno,
+            'email' => Auth::user()->email,
+            'model' => $request->model,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'reqdate' => $request->reqdate,
+            'amount' => $request->amount,
+            'confirmed' => $request->confirmed
+        ]);
+
+        $product = DB::table('products')->select('model','pname')->get();
+        return view('client_order')->with('product',$product);
    }
 
    //view order
@@ -48,12 +54,18 @@ class CustomerController extends Controller
 
   //view customer home page
    public function viewCurrentOrders(Request $request){
-      return view('client_view');
+       $order = DB::table('customer_orders')
+           ->join('users','customer_orders.email','=','users.email')
+           ->join('products','customer_orders.model','=','products.model')
+           ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
+           ->get();
+       return view('client_view')->with('order',$order);
    }
 
   //view customer add order page
    public function addOrderView(Request $request){
-      return view('client_order');
+       $product = DB::table('products')->select('model','pname')->get();
+       return view('client_order')->with('product',$product);
    }
 
 

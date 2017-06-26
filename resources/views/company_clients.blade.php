@@ -34,7 +34,7 @@
         					    </tbody>
 
         					</table>
-        			</div> 
+        			</div>
 
         			<!-- add product model -->
         			<!-- Modal -->
@@ -47,7 +47,7 @@
         			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
         			        	<h4 class="modal-title">Add Client</h4>
         		      		</div>
-        			      	
+
 
         		        	 <form class="form-horizontal" role="form" method="POST" action="{{ url('/addclient') }}">
                                 {{ csrf_field() }}

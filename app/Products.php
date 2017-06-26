@@ -11,6 +11,7 @@ class Products extends Model
      *
      * @var array
      */
+    public $primaryKey = 'model';
     protected $fillable = [
         'model', 'pname',
     ];

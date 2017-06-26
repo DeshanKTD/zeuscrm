@@ -15,22 +15,33 @@
 					        <th>Due Date</th>
 					      </tr>
 					    </thead>
-					   <!--  <tbody>
-					    	@foreach($corders as $record)
-					    		<tr>
-									<td>{{ $record->orderno }}</td>
-									<td>{{ $record->fname." ".$record->lname}}</td>
-									<td>{{ $record->company}}</td>
-									<td>{{ $record->reqdate}}</td>
-									<td>
-                                        <a class="delBtn btn btn-default btn-sm pull-right" href="#">
-                                        View</a>
-                                        <a class="editBtn btn btn-default btn-sm pull-right" href="#">
-                                        Confirm</a>
-									</td>
+					   <tbody>
+					    	@foreach($cuorder as $record)
 								<tr>
+									<td>{{ $record->oderno }}</td>
+												<td>{{ $record->fname." ".$record->lname}}</td>
+												<td>{{ $record->pname."-".$record->model }}</td>
+												<td>{{ $record->amount }}</td>
+												<td>{{ $record->reqdate}}</td>
+												<td>{{ $record->created_at}}</td>
+												<td>
+													<form action="/corderarrived">
+														 {{ csrf_field() }}
+														<input type="hidden" name="oderno" value="{{$record->oderno}}">
+														<button type="submit"class="editBtn btn btn-default btn-sm pull-right" href="#" >
+														Confirm</button>
+													</form>
+													<form action="/cdeleteorder">
+														 {{ csrf_field() }}
+														<input type="hidden" name="oderno" value="{{$record->oderno}}">
+														<button type="submit"class="editBtn btn btn-default btn-sm pull-right" href="#" >
+														Delete</button>
+													</form>
+												</td>
+								<tr>
+
 							@endforeach
-					    </tbody> -->
+					    </tbody>
 
 					</table>
 			</div>   

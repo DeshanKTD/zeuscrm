@@ -13,14 +13,14 @@ class CreateCompanyOrdersTable extends Migration
     public function up()
     {
         Schema::create('company_orders', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('oderno');
             $table->string('email');
             $table->string('model');
-            $table->string('amount');
+            $table->integer('amount');
             $table->timestamps('created');
             $table->date('reqdate');
             $table->binary('confirmed');
+            $table->primary('oderno');
             $table->foreign('email')->references('email')->on('users');
             $table->foreign('model')->references('model')->on('products');
         });

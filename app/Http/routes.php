@@ -46,6 +46,7 @@ Route::get('/addorder','CustomerController@addOrderView');
 
 
 //client functions
+Route::post('/clientmakeorder','CustomerController@createOrder');
 
 
 
@@ -69,4 +70,5 @@ Route::post('/addclient','CompanyController@addClient');
 
 Route::post('/makecompanyorder','CompanyController@createCompanyOrder');
 
-Route::post('/cea','CompanyController@');
+Route::post('/arrivedorder','CompanyController@arrivedOrder');
+

@@ -35,17 +35,11 @@
 											<td>{{ $record->reqdate}}</td>
 											<td>{{ $record->created_at}}</td>
 											<td>
-												<form action="/corderarrived">
+												<form action="/arrivedorder" method="post">
 													 {{ csrf_field() }}
 													<input type="hidden" name="oderno" value="{{$record->oderno}}">
 													<button type="submit"class="editBtn btn btn-default btn-sm pull-right" href="#" >
 			                                        Arrived</button>
-		                                        </form>
-		                                        <form action="/cdeleteorder">
-		                                        	 {{ csrf_field() }}
-													<input type="hidden" name="oderno" value="{{$record->oderno}}">
-													<button type="submit"class="editBtn btn btn-default btn-sm pull-right" href="#" >
-			                                        Delete</button>
 		                                        </form>
 											</td>
 
@@ -67,41 +61,41 @@
 			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
 			        	<h4 class="modal-title">Make Order</h4>
 		      		</div>
-			      	
 
-		        	 <form class="form-horizontal" role="form" method="POST" action="{{ url('/makecompanyorder') }}">
+
+
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/makecompanyorder') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('oderno') ? ' has-error' : '' }}">
-                            <label for="oderno" class="col-md-4 control-label">OrderNo</label>
+                            <label for="oderno" class="col-md-4 control-label">Order No</label>
 
                             <div class="col-md-6">
                                 <input id="oderno" type="text" class="form-control" name="oderno" value="{{ old('oderno') }}">
 
                                 @if ($errors->has('oderno'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('oderno') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('oderno') }}</strong>
+                                            </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('model') ? ' has-error' : '' }}">
-                            <label for="model" class="col-md-4 control-label">Product</label>
+                            <label for="model" class="col-md-4 control-label">Model</label>
 
                             <div class="col-md-6">
-                                <!-- <input id="model" type="text" class="form-control" name="model" value="{{ old('model') }}"> -->
+                                {{--<input id="model" type="text" class="form-control" name="model" value="{{ old('model') }}">--}}
                                 <select class="form-control" id="sel1" name="model">
-                                		@foreach($product as $record)
-								        	<option value="{{$record->model}}">{{$record->pname}}</option>
-								        @endforeach
-								</select>
-
+                                @foreach($product as $record)
+                                    <option value="{{$record->model}}">{{$record->pname}}</option>
+                                @endforeach
                                 @if ($errors->has('model'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('model') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('model') }}</strong>
+                                            </span>
                                 @endif
+                                </select>
                             </div>
                         </div>
 
@@ -113,40 +107,38 @@
 
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('amount') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('amount') }}</strong>
+                                            </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('reqdate') ? ' has-error' : '' }}">
-                            <label for="reqdate" class="col-md-4 control-label">DueDate</label>
+                            <label for="reqdate" class="col-md-4 control-label">Request Date</label>
 
                             <div class="col-md-6">
                                 <input id="reqdate" type="text" class="form-control" name="reqdate" value="{{ old('reqdate') }}">
 
                                 @if ($errors->has('reqdate'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('reqdate') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('reqdate') }}</strong>
+                                            </span>
                                 @endif
                             </div>
                         </div>
 
-                        <input type="hidden" name="confirmed" value="0">
 
-                      
+                        <input type="hidden" name="confirmed" value="0">
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">
-                                   Make 
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-user"></i> Make
                                 </button>
-                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </form>
-
 			      	
 			    </div>
 
