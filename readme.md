@@ -18,11 +18,13 @@ sudo apt-get install php5 libapache2-mod-php5
 Mysql can be install by
 
 sudo apt-get install mysql-server
+
 sudo apt-get install pdo-mysql
 
 Need to install both
 
 Install composer
+
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 
@@ -40,14 +42,17 @@ If you have used another name for database rather than "zeus", enter that name t
 Create a database named "zeus" in mysql.
 
 While in the same folder where laravel install, enter 
+
 composer create-project laravel/laravel –-prefer-dist zeus
 
 This will create a project named zeus in same folder.
 
 Create tables -> while in zeus folder, enter
+
 php artisan migrate
 
 Populate tables with users
+
 php artisan db:seed
 
 You can use following users and passwords to loging
