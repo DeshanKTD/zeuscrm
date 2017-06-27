@@ -10,6 +10,7 @@ use DB;
 
 use Auth;
 
+use Uuid;
 class CustomerController extends Controller
 {
     //
@@ -21,7 +22,7 @@ class CustomerController extends Controller
     //make a order
     public function createOrder(Request $request){
         DB::table('customer_orders')->insert([
-            'oderno' => $request->oderno,
+            'oderno' => Uuid::generate(4),
             'email' => Auth::user()->email,
             'model' => $request->model,
             'created_at' => date('Y-m-d H:i:s'),

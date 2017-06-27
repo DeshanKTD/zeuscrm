@@ -20,6 +20,8 @@ use App\CustomerOrders;
 
 use App\Products;
 
+use Uuid;
+
 class CompanyController extends Controller
 {
     //
@@ -121,7 +123,7 @@ class CompanyController extends Controller
     //create a new company order
     public function createCompanyOrder(Request $request){
         DB::table('company_orders')->insert([
-                'oderno' => $request->oderno,
+                'oderno' => Uuid::generate(4),
                 'email' => Auth::user()->email,
                 'model' => $request->model,
                 'created_at' => date('Y-m-d H:i:s'),

@@ -10,20 +10,6 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/clientmakeorder') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('oderno') ? ' has-error' : '' }}">
-                            <label for="oderno" class="col-md-4 control-label">Order No</label>
-
-                            <div class="col-md-6">
-                                <input id="oderno" type="text" class="form-control" name="oderno" value="{{ old('oderno') }}">
-
-                                @if ($errors->has('oderno'))
-                                    <span class="help-block">
-                                                <strong>{{ $errors->first('oderno') }}</strong>
-                                            </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('model') ? ' has-error' : '' }}">
                             <label for="model" class="col-md-4 control-label">Model</label>
 
