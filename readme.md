@@ -1,4 +1,4 @@
-# Laravel PHP Framework
+# Zeus Pvt CRM
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
@@ -10,18 +10,48 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-## Official Documentation
+## Installation
+Larevel needs PHP >= 5.5.9, OpenSSL PHP Extension, PDO PHP Extension, mysql, Mbstring PHP Extension, Tokenizer PHP Extension.
+In linux PHP can be installed by issueing
+sudo apt-get install php5 libapache2-mod-php5
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Mysql can be install by
 
-## Contributing
+sudo apt-get install mysql-server
+sudo apt-get install pdo-mysql
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Need to install both
 
-## Security Vulnerabilities
+Install composer
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
+Create a new directory and enter below command to install Laravel
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+composer create-project laravel/laravel –-prefer-dist
+
+##Creating project
+
+Create a database named "zeus" in mysql.
+
+While in the same folder where laravel install, enter 
+composer create-project laravel/laravel –-prefer-dist zeus
+
+This will create a project named zeus in same folder.
+
+Create tables -> while in zeus folder, enter
+php artisan migrate
+
+Populate tables with users
+php artisan db:seed
+
+You can use following users and passwords to loging
+
+Admin:: email->asanka@gmail.com,  pw->password
+
+Company User:: email->ruwan@gmail.com, pw->password
+
+Client:: email->hasitha@gmail.com, pw->password
+
+
+
