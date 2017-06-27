@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::post('log','LoginController@authenticate');
 
+Route::get('logcheck','LoginController@returnhome');
+
 ///============= Admin =================================
 
 //admin page routes

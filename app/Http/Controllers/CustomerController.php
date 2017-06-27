@@ -58,6 +58,7 @@ class CustomerController extends Controller
            ->join('users','customer_orders.email','=','users.email')
            ->join('products','customer_orders.model','=','products.model')
            ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
+           ->where('users.company','=',Auth::user()->company)
            ->get();
        return view('client_view')->with('order',$order);
    }

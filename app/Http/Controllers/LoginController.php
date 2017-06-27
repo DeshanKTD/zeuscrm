@@ -30,4 +30,23 @@ class LoginController extends Controller
             return view('welcome');
         }
     }
+
+    public function returnhome(Request $request){
+        if (Auth::check()) {
+            // Authentication passed...
+            $role = Auth::user()->role;
+            if($role==='admin'){
+                return redirect('/adminhome');
+            }
+
+            else if($role==='client'){
+                return redirect('/clienthome');
+            }
+
+            else if($role==='user'){
+                return redirect('/clientorder');
+            }
+            return view('welcome');
+        }
+    }
 }

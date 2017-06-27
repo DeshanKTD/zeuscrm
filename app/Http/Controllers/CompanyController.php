@@ -95,7 +95,7 @@ class CompanyController extends Controller
         $cuorder = DB::table('customer_orders')
             ->join('users','customer_orders.email','=','users.email')
             ->join('products','customer_orders.model','=','products.model')
-            ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
+            ->select('customer_orders.oderno','users.fname','users.lname','users.company','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
             ->get();
 
         return view('company_view')->with('cuorder',$cuorder);
@@ -106,7 +106,7 @@ class CompanyController extends Controller
         $cuorder = DB::table('customer_orders')
             ->join('users','customer_orders.email','=','users.email')
             ->join('products','customer_orders.model','=','products.model')
-            ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
+            ->select('customer_orders.oderno','users.fname','users.lname','users.company','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
             ->get();
 
         return view('company_view')->with('cuorder',$cuorder);
