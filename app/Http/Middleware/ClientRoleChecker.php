@@ -20,12 +20,12 @@ class ClientRoleChecker
             return $next($request);
         }
         elseif($role=='user'){
-            return redirect()->route('userhome');
+            return redirect('/clientorder');
         }
         elseif($role=='client'){
-            return redirect()->route('adminhome');
+            return redirect('/adminhome');
         }
 
-        return redirect()->route('/');
+        return redirect('/');
     }
 }

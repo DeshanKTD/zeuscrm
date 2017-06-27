@@ -15,16 +15,15 @@ class UserRoleChecker
      */
     public function handle($request, Closure $next)
     {
-        $role =  \Auth::user()->role;
-        if($role==='user'){
+        $role = \Auth::user()->role;
+        if ($role === 'user') {
             return $next($request);
-        }
-        elseif($role=='admin'){
-            return redirect()->route('adminhome');
-        }
-        elseif($role=='client'){
-            return redirect()->route('clienthome');
+        } elseif ($role == 'admin') {
+            return redirect('/adminhome');
+        } elseif ($role == 'client') {
+            return redirect('/clienthome');
         }
 
-        return redirect()->route('/');
+        return redirect('/');
+    }
 }

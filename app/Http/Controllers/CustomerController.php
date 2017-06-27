@@ -15,7 +15,7 @@ class CustomerController extends Controller
     //
     public function __construct(){
       $this->middleware('auth');
-      //$this->middleware('rolecheckclient');
+      $this->middleware('rolecheckclient');
     }
 
     //make a order
