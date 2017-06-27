@@ -47,6 +47,10 @@ composer create-project laravel/laravel –-prefer-dist zeus
 
 This will create a project named zeus in same folder.
 
+Download dependancies with
+
+composer update
+
 Create tables -> while in zeus folder, enter
 
 php artisan migrate
