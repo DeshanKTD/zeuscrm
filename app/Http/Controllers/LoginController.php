@@ -46,7 +46,8 @@ class LoginController extends Controller
             else if($role==='user'){
                 return redirect('/clientorder');
             }
-            return view('welcome');
+
         }
+        return view('welcome');
     }
 }
