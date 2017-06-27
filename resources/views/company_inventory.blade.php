@@ -28,9 +28,10 @@
     									<td>{{ $record->pname}}</td>
     									<td>{{ $record->units}}</td>
     									<td>
-                                            <form action="/deleteproduct">
+                                            <form action="/deleteproduct" method="post">
+                                                {{ csrf_field() }}
                                                 <input type="hidden" name="model" value="{{$record->model}}">
-                                                <button class="btn btn-default btn-sm pull-right" href="#">
+                                                <button class="btn btn-default btn-sm pull-right" type="submit">
                                                 Delete</button>
                                             </form>
     									</td>
@@ -91,7 +92,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-default">
-                                       Register 
+                                      Add
                                     </button>
                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>

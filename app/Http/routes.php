@@ -72,3 +72,6 @@ Route::post('/makecompanyorder','CompanyController@createCompanyOrder');
 
 Route::post('/arrivedorder','CompanyController@arrivedOrder');
 
+Route::post('/acceptcusorder','CompanyController@acceptCustomerOrder');
+
+Route::post('/deleteproduct','CompanyController@deleteProduct');

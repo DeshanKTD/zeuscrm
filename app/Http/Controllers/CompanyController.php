@@ -15,6 +15,11 @@ use DB;
 use App\ProductInventory;
 
 use App\CompanyOrders;
+
+use App\CustomerOrders;
+
+use App\Products;
+
 class CompanyController extends Controller
 {
     //
@@ -59,27 +64,41 @@ class CompanyController extends Controller
 
     //delete a product from inventory
     public function deleteProduct(Request $request){
+        ProductInventory::where('model','=',$request->model)->delete();
+        Products::where('model','=',$request->model)->delete();
+
+        $product = DB::table('product_inventories')
+            ->join('products', 'product_inventories.model', '=', 'products.model')
+            ->select('products.model','products.pname','product_inventories.units')
+            ->get();
+
+        return view('company_inventory')->with('product',$product);
 
     }
 
-    //add product units to inventory
-    public function addProdcut(Request $request){
-
-    }
-
-    //remove product units from inventory
-    public function removeProduct(Request $request){
-
-    }
 
     //remove customer order
     public function removeCustomerOrder(Request $request){
+        CustomerOrders::where('oderno','=',$request->oderno)->delete();
 
     }
 
     //accept customer order
     public function acceptCustomerOrder(Request $request){
+        CustomerOrders::where('oderno',$request->oderno)->update(['confirmed'=>1]);
+        $order = CustomerOrders::find($request->oderno);
 
+        $model = ProductInventory::find($order->model);
+        $model->units-=$order->amount;
+        $model->save();
+
+        $cuorder = DB::table('customer_orders')
+            ->join('users','customer_orders.email','=','users.email')
+            ->join('products','customer_orders.model','=','products.model')
+            ->select('customer_orders.oderno','users.fname','users.lname','customer_orders.reqdate','customer_orders.created_at','customer_orders.amount','products.model','products.pname','customer_orders.confirmed')
+            ->get();
+
+        return view('company_view')->with('cuorder',$cuorder);
     }
 
     //view customer order

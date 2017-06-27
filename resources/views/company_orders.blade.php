@@ -27,7 +27,13 @@
 							    </thead>
 							    <tbody>
 							    	@foreach($order as $record)
-							    		<tr>
+							    		<tr class=
+                                            @if($record->confirmed==true)
+                                                "success"
+                                            @else
+                                                "warning"
+                                            @endif
+                                        >
 											<td>{{ $record->oderno }}</td>
 											<td>{{ $record->fname." ".$record->lname}}</td>
 											<td>{{ $record->pname."-".$record->model }}</td>
@@ -38,7 +44,11 @@
 												<form action="/arrivedorder" method="post">
 													 {{ csrf_field() }}
 													<input type="hidden" name="oderno" value="{{$record->oderno}}">
-													<button type="submit"class="editBtn btn btn-default btn-sm pull-right" href="#" >
+													<button type="submit"class="editBtn btn btn-default btn-sm pull-right
+                                                        @if($record->confirmed==true)
+                                                            disabled
+                                                        @endif
+                                                        " href="#" >
 			                                        Arrived</button>
 		                                        </form>
 											</td>
