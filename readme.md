@@ -30,12 +30,12 @@ Create a new directory and enter below command to install Laravel
 
 composer create-project laravel/laravel –-prefer-dist
 
-##make configurations
+## make configurations
 Edit the .env file in zeus directory with the mysql server ip, username, DB username and DB password.
 If you have used another name for database rather than "zeus", enter that name to this file field "DB_DATABASE".
 
 
-##Creating project
+## Creating project
 
 Create a database named "zeus" in mysql.
 
